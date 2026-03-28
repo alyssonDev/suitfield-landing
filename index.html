@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suitfield – Elegância que se Destaca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F8F4EE;
+  --cream2: #F0EAE0;
+  --ink: #0E0C0A;
+  --ink2: #1C1917;
+  --gold: #B8953F;
+  --gold-lt: #D4B06A;
+  --sand: #C8B89A;
+  --muted: #7A7060;
+  --white: #FFFFFF;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Montserrat', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--sans); background:var(--white); color:var(--ink); overflow-x:hidden; }
+
+/* ── NAV ── */
+nav {
+  position:fixed; inset:0 0 auto; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 6%; height:68px;
+  background:rgba(14,12,10,0.93); backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(184,149,63,0.18);
+}
+.nav-logo {
+  font-family:var(--serif); font-size:24px; font-weight:300;
+  letter-spacing:0.22em; color:var(--white); text-transform:uppercase;
+}
+.nav-logo b { color:var(--gold); font-weight:600; }
+.nav-menu { display:flex; gap:36px; list-style:none; }
+.nav-menu a {
+  font-family:var(--sans); font-size:10px; font-weight:500;
+  letter-spacing:0.2em; text-transform:uppercase;
+  color:rgba(255,255,255,0.55); text-decoration:none; transition:color .25s;
+}
+.nav-menu a:hover { color:var(--gold); }
+.nav-wa {
+  font-family:var(--sans); font-size:10px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--ink); background:var(--gold);
+  padding:10px 24px; border-radius:1px; text-decoration:none;
+  transition:background .2s;
+}
+.nav-wa:hover { background:var(--gold-lt); }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh; display:flex; align-items:center;
+  position:relative; overflow:hidden;
+  background:#0a0806;
+}
+.hero-img {
+  position:absolute; inset:0;
+  background:url('https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?w=1800&q=85') center 30%/cover no-repeat;
+  opacity:.28; transform:scale(1.04);
+}
+.hero-vignette {
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse 80% 100% at 70% 50%, transparent 30%, rgba(5,4,3,0.75) 100%);
+}
+.hero-left-fade {
+  position:absolute; inset:0;
+  background:linear-gradient(to right, rgba(5,4,3,0.92) 0%, rgba(5,4,3,0.55) 45%, transparent 70%);
+}
+.hero-content {
+  position:relative; z-index:2;
+  padding:0 6%; max-width:680px; padding-top:68px;
+}
+.hero-rule {
+  display:flex; align-items:center; gap:14px; margin-bottom:32px;
+}
+.hero-rule-line { width:40px; height:1px; background:var(--gold); }
+.hero-rule-text {
+  font-family:var(--sans); font-size:9px; font-weight:500;
+  letter-spacing:0.28em; text-transform:uppercase; color:var(--gold);
+}
+.hero h1 {
+  font-family:var(--serif); font-size:clamp(52px,7vw,88px);
+  font-weight:300; line-height:1.0; color:var(--white);
+  margin-bottom:28px;
+}
+.hero h1 i { font-style:italic; color:var(--gold-lt); }
+.hero-body {
+  font-family:var(--sans); font-size:13px; font-weight:300;
+  line-height:1.85; color:rgba(255,255,255,0.6);
+  max-width:420px; margin-bottom:44px; letter-spacing:0.03em;
+}
+.hero-ctas { display:flex; gap:14px; flex-wrap:wrap; }
+.cta-primary {
+  font-family:var(--sans); font-size:10px; font-weight:600;
+  letter-spacing:0.2em; text-transform:uppercase;
+  background:var(--gold); color:var(--ink);
+  padding:16px 34px; text-decoration:none; border-radius:1px;
+  transition:background .2s, transform .2s;
+  display:inline-block;
+}
+.cta-primary:hover { background:var(--gold-lt); transform:translateY(-1px); }
+.cta-ghost {
+  font-family:var(--sans); font-size:10px; font-weight:500;
+  letter-spacing:0.2em; text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.3); color:rgba(255,255,255,0.7);
+  padding:16px 34px; text-decoration:none; border-radius:1px;
+  transition:border-color .2s, color .2s; display:inline-block;
+}
+.cta-ghost:hover { border-color:var(--gold); color:var(--gold); }
+.hero-scroll-hint {
+  position:absolute; bottom:40px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:10px; z-index:2;
+}
+.scroll-drop {
+  width:1px; height:52px;
+  background:linear-gradient(to bottom, var(--gold) 0%, transparent 100%);
+  animation:drop 2s ease-in-out infinite;
+}
+@keyframes drop { 0%,100%{opacity:.3;transform:scaleY(0.5);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
+.scroll-label {
+  font-family:var(--sans); font-size:8px; font-weight:500;
+  letter-spacing:0.3em; text-transform:uppercase; color:rgba(255,255,255,0.3);
+}
+
+/* ── RIBBON ── */
+.ribbon {
+  background:var(--ink2); padding:16px 6%;
+  display:flex; align-items:center; justify-content:center; gap:52px; flex-wrap:wrap;
+  border-bottom:1px solid rgba(184,149,63,0.12);
+}
+.ribbon-item {
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--sans); font-size:10px; font-weight:400;
+  letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5);
+}
+.ribbon-dot { width:4px; height:4px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+
+/* ── SECTION HELPERS ── */
+.section { padding:108px 6%; }
+.tag {
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--sans); font-size:9px; font-weight:500;
+  letter-spacing:0.28em; text-transform:uppercase; color:var(--gold);
+  margin-bottom:18px;
+}
+.tag-line { width:28px; height:1px; background:var(--gold); }
+.headline {
+  font-family:var(--serif); font-size:clamp(32px,4vw,52px);
+  font-weight:300; line-height:1.12; color:var(--ink);
+  margin-bottom:18px;
+}
+.headline i { font-style:italic; }
+.subline {
+  font-family:var(--sans); font-size:13px; font-weight:300;
+  line-height:1.8; color:var(--muted); max-width:520px;
+  letter-spacing:0.02em;
+}
+
+/* ── ABOUT ── */
+.about { background:var(--cream); }
+.about-inner {
+  display:grid; grid-template-columns:1fr 1fr; gap:96px;
+  align-items:center; max-width:1160px; margin:0 auto;
+}
+.about-photo-wrap { position:relative; }
+.about-photo {
+  width:100%; aspect-ratio:3/4;
+  background:url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=900&q=85') top center/cover;
+}
+.about-medallion {
+  position:absolute; bottom:-24px; right:-24px;
+  width:116px; height:116px; border-radius:50%;
+  background:var(--ink2); border:1px solid var(--gold);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+}
+.about-medallion strong {
+  font-family:var(--serif); font-size:38px; font-weight:300; color:var(--gold); line-height:1;
+}
+.about-medallion span {
+  font-family:var(--sans); font-size:9px; font-weight:500;
+  letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5);
+  text-align:center; margin-top:2px;
+}
+.about-copy .tag, .about-copy .headline { text-align:left; }
+.about-copy p {
+  font-family:var(--sans); font-size:13px; font-weight:300;
+  line-height:1.85; color:var(--muted); margin-bottom:18px; letter-spacing:0.02em;
+}
+.about-metrics { display:flex; gap:40px; margin-top:40px; padding-top:36px; border-top:1px solid var(--cream2); }
+.metric strong {
+  display:block; font-family:var(--serif); font-size:42px; font-weight:300; color:var(--ink); line-height:1;
+}
+.metric span {
+  font-family:var(--sans); font-size:9px; font-weight:500;
+  letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin-top:4px; display:block;
+}
+
+/* ── PRODUCTS ── */
+.products-section { background:var(--white); }
+.products-header { text-align:center; margin-bottom:64px; }
+.products-header .headline { margin:0 auto 16px; }
+.products-header .subline { margin:0 auto; }
+.products-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
+  max-width:1200px; margin:0 auto 56px;
+}
+.prod {
+  position:relative; overflow:hidden; cursor:pointer;
+  aspect-ratio:3/4; background:var(--cream2);
+}
+.prod-img {
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .7s ease;
+}
+.prod:hover .prod-img { transform:scale(1.06); }
+.prod-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(10,8,6,0.88) 0%, rgba(10,8,6,0.1) 55%, transparent 100%);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:28px 24px; transition:opacity .3s;
+}
+.prod-cat {
+  font-family:var(--sans); font-size:8px; font-weight:500;
+  letter-spacing:0.25em; text-transform:uppercase; color:var(--gold);
+  margin-bottom:6px;
+}
+.prod-name {
+  font-family:var(--serif); font-size:20px; font-weight:300;
+  color:var(--white); line-height:1.2; margin-bottom:14px;
+}
+.prod-action {
+  font-family:var(--sans); font-size:9px; font-weight:600;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--white);
+  opacity:0; transform:translateY(6px); transition:all .3s;
+  text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+}
+.prod-action::after { content:'→'; }
+.prod:hover .prod-action { opacity:1; transform:translateY(0); }
+.prod-badge {
+  position:absolute; top:16px; left:16px;
+  font-family:var(--sans); font-size:8px; font-weight:600;
+  letter-spacing:0.16em; text-transform:uppercase;
+  background:var(--gold); color:var(--ink); padding:5px 12px;
+}
+.products-footer { text-align:center; }
+.btn-dark {
+  display:inline-block; font-family:var(--sans); font-size:10px; font-weight:600;
+  letter-spacing:0.2em; text-transform:uppercase;
+  background:var(--ink); color:var(--white);
+  padding:16px 40px; text-decoration:none; border-radius:1px;
+  transition:background .2s;
+}
+.btn-dark:hover { background:var(--ink2); }
+
+/* ── PROCESS ── */
+.process { background:var(--ink2); }
+.process .tag { color:var(--gold); }
+.process .headline { color:var(--white); }
+.process-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.06);
+  margin-top:64px; max-width:1160px;
+}
+.process-step {
+  background:var(--ink2); padding:44px 36px;
+  border-right:1px solid rgba(255,255,255,0.06);
+  transition:background .25s;
+}
+.process-step:last-child { border-right:none; }
+.process-step:hover { background:#232118; }
+.step-n {
+  font-family:var(--serif); font-size:52px; font-weight:300;
+  color:rgba(184,149,63,0.2); line-height:1; margin-bottom:24px;
+}
+.step-title {
+  font-family:var(--serif); font-size:20px; font-weight:300;
+  color:var(--white); margin-bottom:12px;
+}
+.step-desc {
+  font-family:var(--sans); font-size:12px; font-weight:300;
+  line-height:1.8; color:rgba(255,255,255,0.45); letter-spacing:0.02em;
+}
+
+/* ── CTA BAND ── */
+.cta-band {
+  background:var(--gold); padding:80px 6%;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:40px; flex-wrap:wrap;
+}
+.cta-band-text h2 {
+  font-family:var(--serif); font-size:clamp(28px,4vw,48px);
+  font-weight:300; color:var(--ink); line-height:1.15; margin-bottom:10px;
+}
+.cta-band-text h2 i { font-style:italic; }
+.cta-band-text p {
+  font-family:var(--sans); font-size:13px; font-weight:300;
+  color:rgba(14,12,10,0.65); max-width:480px; line-height:1.7;
+}
+.wa-btn {
+  display:inline-flex; align-items:center; gap:14px;
+  background:var(--ink); color:var(--white);
+  font-family:var(--sans); font-size:11px; font-weight:600;
+  letter-spacing:0.16em; text-transform:uppercase;
+  padding:18px 34px; text-decoration:none; border-radius:1px;
+  transition:background .2s; white-space:nowrap;
+}
+.wa-btn:hover { background:var(--ink2); }
+.wa-btn svg { width:20px; height:20px; fill:white; flex-shrink:0; }
+.wa-sub {
+  margin-top:10px; font-family:var(--sans); font-size:11px;
+  font-weight:400; color:rgba(14,12,10,0.5); letter-spacing:0.04em;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials { background:var(--cream); }
+.testi-header { text-align:center; margin-bottom:64px; }
+.testi-header .headline { margin:0 auto 14px; }
+.testi-header .subline { margin:0 auto; }
+.testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; max-width:1160px; margin:0 auto; }
+.testi-card {
+  background:var(--white); padding:44px 36px;
+  position:relative; transition:transform .25s;
+}
+.testi-card:hover { transform:translateY(-3px); }
+.testi-quote {
+  font-family:var(--serif); font-size:80px; font-weight:300;
+  color:var(--gold); opacity:.18; line-height:.8; margin-bottom:20px; user-select:none;
+}
+.testi-stars { display:flex; gap:3px; margin-bottom:18px; }
+.testi-stars span { color:var(--gold); font-size:12px; }
+.testi-text {
+  font-family:var(--serif); font-size:16px; font-weight:300;
+  font-style:italic; line-height:1.75; color:#3d3730;
+  margin-bottom:28px;
+}
+.testi-author { display:flex; align-items:center; gap:14px; }
+.testi-av {
+  width:46px; height:46px; border-radius:50%;
+  background:var(--ink2); display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif); font-size:16px; font-weight:300;
+  color:var(--gold); flex-shrink:0;
+}
+.testi-name { font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:0.06em; color:var(--ink); }
+.testi-role { font-family:var(--sans); font-size:10px; font-weight:400; letter-spacing:0.06em; color:var(--muted); margin-top:3px; }
+.verified {
+  display:inline-flex; align-items:center; gap:5px; margin-top:12px;
+  font-family:var(--sans); font-size:10px; font-weight:500;
+  letter-spacing:0.08em; color:#4a7c36;
+  background:#eaf3de; padding:4px 10px; border-radius:20px;
+}
+
+/* ── GUARANTEE ── */
+.guarantee {
+  background:var(--ink); padding:80px 6%;
+  display:flex; align-items:center; justify-content:center; gap:72px;
+  flex-wrap:wrap;
+}
+.guarantee-seal {
+  width:120px; height:120px; border-radius:50%;
+  border:1px solid var(--gold); display:flex; flex-direction:column;
+  align-items:center; justify-content:center; flex-shrink:0;
+}
+.guarantee-seal strong {
+  font-family:var(--serif); font-size:34px; font-weight:300; color:var(--gold); line-height:1;
+}
+.guarantee-seal span {
+  font-family:var(--sans); font-size:9px; font-weight:500;
+  letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-top:2px;
+}
+.guarantee-copy h3 {
+  font-family:var(--serif); font-size:32px; font-weight:300;
+  color:var(--white); margin-bottom:14px; line-height:1.2;
+}
+.guarantee-copy h3 i { font-style:italic; color:var(--gold); }
+.guarantee-copy p {
+  font-family:var(--sans); font-size:13px; font-weight:300;
+  line-height:1.8; color:rgba(255,255,255,0.5); max-width:520px; letter-spacing:0.02em;
+}
+
+/* ── FOOTER ── */
+footer {
+  background:#070605; padding:72px 6% 36px;
+  border-top:1px solid rgba(184,149,63,0.12);
+}
+.footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:56px; margin-bottom:56px; }
+.footer-logo-text {
+  font-family:var(--serif); font-size:26px; font-weight:300;
+  letter-spacing:0.18em; color:var(--white); text-transform:uppercase;
+}
+.footer-logo-text b { color:var(--gold); font-weight:600; }
+.footer-tagline {
+  font-family:var(--serif); font-size:13px; font-style:italic;
+  color:rgba(255,255,255,0.3); margin-top:6px; margin-bottom:16px;
+}
+.footer-desc {
+  font-family:var(--sans); font-size:12px; font-weight:300;
+  color:rgba(255,255,255,0.35); line-height:1.8; max-width:240px;
+}
+.footer-cnpj {
+  font-family:var(--sans); font-size:10px; color:rgba(255,255,255,0.2);
+  margin-top:12px; letter-spacing:0.06em;
+}
+.footer-col h4 {
+  font-family:var(--sans); font-size:9px; font-weight:600;
+  letter-spacing:0.22em; text-transform:uppercase;
+  color:rgba(255,255,255,0.3); margin-bottom:18px;
+}
+.footer-col ul { list-style:none; }
+.footer-col li { margin-bottom:10px; }
+.footer-col a {
+  font-family:var(--sans); font-size:12px; font-weight:300;
+  color:rgba(255,255,255,0.45); text-decoration:none; letter-spacing:0.03em;
+  transition:color .2s;
+}
+.footer-col a:hover { color:var(--gold); }
+.footer-contact li {
+  font-family:var(--sans); font-size:12px; font-weight:300;
+  color:rgba(255,255,255,0.45); letter-spacing:0.03em;
+}
+.footer-bottom {
+  border-top:1px solid rgba(255,255,255,0.05);
+  padding-top:28px; display:flex; align-items:center;
+  justify-content:space-between; flex-wrap:wrap; gap:12px;
+}
+.footer-bottom p {
+  font-family:var(--sans); font-size:10px; font-weight:300;
+  color:rgba(255,255,255,0.2); letter-spacing:0.06em;
+}
+.footer-links { display:flex; gap:24px; }
+.footer-links a {
+  font-family:var(--sans); font-size:10px; font-weight:300;
+  color:rgba(255,255,255,0.2); text-decoration:none; letter-spacing:0.06em;
+  transition:color .2s;
+}
+.footer-links a:hover { color:var(--gold); }
+
+/* ── FLOAT WA ── */
+.float-wa {
+  position:fixed; bottom:28px; right:28px; z-index:200;
+  width:54px; height:54px; border-radius:50%;
+  background:#25D366; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 24px rgba(37,211,102,0.4); text-decoration:none;
+  transition:transform .2s;
+}
+.float-wa:hover { transform:scale(1.08); }
+.float-wa svg { width:26px; height:26px; fill:white; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .products-grid { grid-template-columns:repeat(2,1fr); }
+  .process-grid { grid-template-columns:repeat(2,1fr); }
+  .testi-grid { grid-template-columns:1fr 1fr; }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+  .about-inner { grid-template-columns:1fr; gap:56px; }
+  .about-medallion { display:none; }
+}
+@media(max-width:700px){
+  .nav-menu { display:none; }
+  .products-grid { grid-template-columns:1fr 1fr; }
+  .process-grid { grid-template-columns:1fr; }
+  .testi-grid { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr; }
+  .cta-band { text-align:center; justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Suit<b>field</b></div>
+  <ul class="nav-menu">
+            <li><a href="#sobre">Home</a></li>
+
+    <li><a href="#colecao">Coleção</a></li>
+    <li><a href="#processo">Atendimento</a></li>
+    <li><a href="#depoimentos">Clientes</a></li>
+  </ul>
+  <a href="https://wa.me/5583996735374" class="nav-wa">Consultoria</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-left-fade"></div>
+  <div class="hero-content">
+    <div class="hero-rule">
+      <div class="hero-rule-line"></div>
+      <span class="hero-rule-text">Moda Social Masculina · Desde 2010</span>
+    </div>
+    <h1>A arte de<br>vestir-se com<br><i>propósito</i></h1>
+    <p class="hero-body">Tecidos selecionados, cortes de alfaiataria e uma curadoria pensada para o homem que compreende que elegância não é vaidade — é intenção.</p>
+    <div class="hero-ctas">
+      <a href="#colecao" class="cta-primary">Explorar Coleção</a>
+      <a href="https://wa.me/5583996735374" class="cta-ghost">Consultoria Gratuita</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-drop"></div>
+    <span class="scroll-label">Descobrir</span>
+  </div>
+</div>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-item"><div class="ribbon-dot"></div> Mais de 3.200 clientes</div>
+  <div class="ribbon-item"><div class="ribbon-dot"></div> 16 anos de tradição</div>
+  <div class="ribbon-item"><div class="ribbon-dot"></div> Frete grátis acima de R$ 499</div>
+  <div class="ribbon-item"><div class="ribbon-dot"></div> Troca em 30 dias</div>
+  <div class="ribbon-item"><div class="ribbon-dot"></div> Parcelamento em 10x</div>
+</div>
+
+<!-- SOBRE / MAISON -->
+<section class="section about" id="sobre">
+  <div class="about-inner">
+    <div class="about-photo-wrap">
+      <div class="about-photo"></div>
+      <div class="about-medallion">
+        <strong>16</strong>
+        <span>Anos de<br>Tradição</span>
+      </div>
+    </div>
+    <div class="about-copy">
+      <div class="tag"><span class="tag-line"></span> Nossa História</div>
+      <h2 class="headline">Elegância que<br><i>transforma presença</i></h2>
+      <p>A Suitfield nasceu da convicção de que vestir-se bem vai além da estética — é uma declaração de intenção. Há dezesseis anos, nos dedicamos a vestir homens que entendem que confiança começa na escolha certa.</p>
+      <p>Cada peça de nossa coleção passa por uma curadoria rigorosa: tecidos de alto padrão, caimentos precisos e acabamento impecável. Do executivo ao noivo, do gerente ao empreendedor — para cada momento, a peça exata.</p>
+      <div class="about-metrics">
+        <div class="metric"><strong>3.2K</strong><span>Clientes atendidos</span></div>
+        <div class="metric"><strong>98%</strong><span>Satisfação Google</span></div>
+        <div class="metric"><strong>15</strong><span>Anos no mercado</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLEÇÃO -->
+<section class="section products-section" id="colecao">
+  <div class="products-header">
+    <div class="tag" style="justify-content:center;"><span class="tag-line"></span> Coleção 2025 <span class="tag-line"></span></div>
+    <h2 class="headline" style="text-align:center;">Nossas Peças</h2>
+    <p class="subline" style="text-align:center;">Cada peça desenvolvida para o homem moderno que não abre mão de elegância e conforto em qualquer ocasião.</p>
+  </div>
+  <div class="products-grid">
+    <div class="prod">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=700&q=85" alt="Costume Azul Marinho">
+      <div class="prod-overlay">
+        <div class="prod-cat">Terno</div>
+        <div class="prod-name">Costume Regular Fit Azul Marinho</div>
+        <a href="https://wa.me/5583996735374" class="prod-action">Consultar</a>
+      </div>
+      <div class="prod-badge">Mais Vendido</div>
+    </div>
+    <div class="prod">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=700&q=85" alt="Costume Xadrez Bege">
+      <div class="prod-overlay">
+        <div class="prod-cat">Terno</div>
+        <div class="prod-name">Costume Slim Xadrez Bege</div>
+        <a href="https://wa.me/5583996735374" class="prod-action">Consultar</a>
+      </div>
+    </div>
+    <div class="prod">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=700&q=85" alt="Camisa Social Cinza">
+      <div class="prod-overlay">
+        <div class="prod-cat">Camisa</div>
+        <div class="prod-name">Camisa Social Oxford Cinza</div>
+        <a href="https://wa.me/5583996735374" class="prod-action">Consultar</a>
+      </div>
+      <div class="prod-badge">Lançamento</div>
+    </div>
+    <div class="prod">
+      <img class="prod-img" src="https://images.unsplash.com/photo-1589756823695-278bc923f962?w=700&q=85" alt="Gravata Seda">
+      <div class="prod-overlay">
+        <div class="prod-cat">Acessório</div>
+        <div class="prod-name">Gravata Seda Estampada Amarelo e Azul</div>
+        <a href="https://wa.me/5583996735374" class="prod-action">Consultar</a>
+      </div>
+    </div>
+  </div>
+  <div class="products-footer">
+    <a href="https://wa.me/5583996735374" class="btn-dark">Ver Catálogo Completo →</a>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="section process" id="processo">
+  <div style="max-width:1160px;">
+    <div class="tag"><span class="tag-line" style="background:var(--gold);"></span> Como funciona</div>
+    <h2 class="headline" style="color:var(--white);">Do primeiro contato<br><i>à peça perfeita</i></h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-n">01</div>
+      <div class="step-title">Fale Conosco</div>
+      <div class="step-desc">Entre pelo WhatsApp, descreva sua ocasião, estilo e medidas. Nosso consultor responde em até 5 minutos.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-n">02</div>
+      <div class="step-title">Curadoria Personalizada</div>
+      <div class="step-desc">Indicamos as peças ideais para seu perfil, biotipo e orçamento — sem pressão, sem script.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-n">03</div>
+      <div class="step-title">Pagamento Seguro</div>
+      <div class="step-desc">Pix, cartão de crédito ou boleto. Parcelamos em até 10x sem juros com total segurança.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-n">04</div>
+      <div class="step-title">Entrega Rastreada</div>
+      <div class="step-desc">Enviamos para todo o Brasil em 3 a 7 dias úteis, embalado com cuidado e código de rastreamento.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band" id="contato">
+  <div class="cta-band-text">
+    <h2>Pronto para elevar<br><i>a sua imagem?</i></h2>
+    <p>Atendimento humano, especializado e sem burocracia. Fale agora com nosso consultor e descubra a peça certa para o seu próximo compromisso.</p>
+  </div>
+  <div>
+    <a href="https://wa.me/5583996735374" class="wa-btn">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Falar com Consultor
+    </a>
+    <div class="wa-sub">(83) 99673-5374 · Resposta em até 5 minutos</div>
+  </div>
+</div>
+
+<!-- DEPOIMENTOS -->
+<section class="section testimonials" id="depoimentos">
+  <div class="testi-header">
+    <div class="tag" style="justify-content:center;"><span class="tag-line"></span> Clientes <span class="tag-line"></span></div>
+    <h2 class="headline" style="text-align:center;">O que dizem sobre nós</h2>
+    <p class="subline" style="text-align:center;">Avaliações verificadas de clientes que transformaram sua presença com a Suitfield.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testi-text">"Comprei meu terno para uma reunião de diretoria e o impacto foi imediato. Vários colegas perguntaram onde eu havia comprado. Qualidade de alfaiataria a um preço que nenhum concorrente oferece."</p>
+      <div class="testi-author">
+        <div class="testi-av">JS</div>
+        <div>
+          <div class="testi-name">João Santos</div>
+          <div class="testi-role">Advogado · São Paulo, SP</div>
+        </div>
+      </div>
+      <div class="verified">✓ Compra verificada</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testi-text">"Atendimento excepcional. Enviaram fotos, tiraram todas as dúvidas sobre medidas e o terno chegou no prazo, embalado com cuidado. Já é minha segunda compra e não será a última."</p>
+      <div class="testi-author">
+        <div class="testi-av">RM</div>
+        <div>
+          <div class="testi-name">Ricardo Munhoz</div>
+          <div class="testi-role">Executivo · Curitiba, PR</div>
+        </div>
+      </div>
+      <div class="verified">✓ Compra verificada</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="testi-text">"Precisava de algo elegante para uma apresentação importante. A Suitfield entregou além das expectativas. O tecido tem caimento perfeito e a gravata elevou todo o conjunto."</p>
+      <div class="testi-author">
+        <div class="testi-av">MB</div>
+        <div>
+          <div class="testi-name">Moraes Bradusque</div>
+          <div class="testi-role">Médico · Porto Alegre, RS</div>
+        </div>
+      </div>
+      <div class="verified">✓ Compra verificada</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:40px;">
+    <p style="font-family:var(--sans);font-size:12px;font-weight:300;color:var(--muted);letter-spacing:0.04em;">Nota média <strong style="color:var(--ink);">4.9 / 5.0</strong> · Baseada em mais de 200 avaliações no Google</p>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<div class="guarantee">
+  <div class="guarantee-seal">
+    <strong>30</strong>
+    <span>dias de<br>garantia</span>
+  </div>
+  <div class="guarantee-copy">
+    <h3>Satisfação garantida<br><i>ou seu dinheiro de volta</i></h3>
+    <p>Não ficou satisfeito com a peça por qualquer motivo? Devolvemos 100% do valor sem burocracia. Trocamos o tamanho gratuitamente. Sua confiança é nossa prioridade desde o primeiro contato.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-text">Suit<b>field</b></div>
+      <div class="footer-tagline">Elegância que se destaca.</div>
+      <p class="footer-desc">Moda social masculina premium. Tecidos selecionados, cortes impecáveis e atendimento personalizado para homens que valorizam elegância.</p>
+      <div class="footer-cnpj">CNPJ: 00.000.000/0001-00</div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#sobre">Home</a></li>
+        <li><a href="#colecao">Coleção</a></li>
+        <li><a href="#processo">Como funciona</a></li>
+        <li><a href="#depoimentos">Clientes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Políticas</h4>
+      <ul>
+        <li><a href="#">Privacidade</a></li>
+        <li><a href="#">Trocas e Devoluções</a></li>
+        <li><a href="#">Termos de Uso</a></li>
+        <li><a href="#">Frete e Entrega</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <h4>Contato</h4>
+      <ul>
+        <li>(83) 99673-5374</li>
+        <li style="margin-top:8px;">contato@suitfield.com.br</li>
+        <li style="margin-top:8px;">Seg – Sex: 08h às 18h</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Suitfield. Todos os direitos reservados.</p>
+    <div class="footer-links">
+      <a href="#">Privacidade</a>
+      <a href="#">Termos</a>
+      <a href="#">Trocas</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOAT WA -->
+<a href="https://wa.me/5583996735374" class="float-wa">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+</body>
+</html>
